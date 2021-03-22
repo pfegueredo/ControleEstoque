@@ -1,14 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head> <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Controle de Estoque</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -20,15 +18,12 @@
                 </button>
                 @Html.ActionLink("Controle de Estoque", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-
-
             <div class="navbar-collapse collapse">
-                
-                
+                <!-- if (Request.IsAuthenticated) (Descomentar quando descobrir a solução) -->
+                <!-- { (Descomentar quando descobrir a solução)-->
                 <ul class="nav navbar-nav">
-
-
                     <li>
+                        <!--Inicio Menu Cadastro-->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Cadastros
                             <span class="caret"></span>
@@ -48,9 +43,10 @@
                             <li>@Html.ActionLink("Perfis de Usuários", "PerfilUsuario", "Cadastro")</li>
                             <li>@Html.ActionLink("Usuários", "Usuario", "Cadastro")</li>
                         </ul>
-                    </li>
+                    </li><!--FIM Menu Cadastro-->
 
                     <li>
+                        <!--Inicio Menu Operacao-->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Operações
                             <span class="caret"></span>
@@ -61,8 +57,11 @@
                             <li>@Html.ActionLink("Lançamento de perdas de produtos", "LanPerdaProduto", "Operacao")</li>
                             <li>@Html.ActionLink("Inventário de estoque", "Inventario", "Operacao")</li>
                         </ul>
-                    </li>
+                    </li> <!--FIM Menu Operacao-->
+
+
                     <li>
+                        <!--Inicio Menu Relatorio-->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Relatórios
                             <span class="caret"></span>
@@ -70,12 +69,13 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Posição de Estoque", "PosicaoEstoque", "Relatorio")</li>
                             <li>@Html.ActionLink("Ressuprimento", "Ressuprimento", "Relatorio")</li>
-
                         </ul>
-                    </li>
+                    </li><!--FIM menu Relatório-->
+
+
                     <li>
-                    <li>
-                        <a href="#"  class="dropdown-toggle" data-toggle="dropdown">
+                        <!--Inicio Menu Gráfico-->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Gráficos
                             <span class="caret"></span>
                         </a>
@@ -85,26 +85,34 @@
                         </ul>
                     </li>
                 </ul>
-                
+                @using (Html.BeginForm("LogOff", "Conta", FormMethod.Post, new { id = "logoffForm" }))
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                        <li><a href="#">Olá @User.Identity</a></li>
+                        <li><a href="javascript:document.getElementById('logoffForm').submit()">Sair</a></li>
+                    </ul>
+                }
+                <!-- } (Descomentar quando descobrir a solução)-->
+                <!-- else (Descomentar quando descobrir a solução)--> 
+                <!-- { -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Conta")</li>
                 </ul>
-                
-                
-
+                }
+            </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Controle de Estoque</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Controle de Estoque</p>
+            </footer>
+        </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>
