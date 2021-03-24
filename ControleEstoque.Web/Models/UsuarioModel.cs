@@ -14,7 +14,9 @@ namespace ControleEstoque.Web.Models
 
             using (var conexao = new SqlConnection())
             {
-                conexao.ConnectionString = @"Data Source=localhost; Initial Catalog=ControleEstoque; User Id=admin;Password=''";
+                //@"Server=(localdb)\mssqllocaldb;Database=Cursomvc;Integrated Security=True");
+                //@"Data Source=localhost; Initial Catalog=ControleEstoque; User Id=admin;Password=''"
+                conexao.ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Database=ControleEstoque;Integrated Security=True";
                 conexao.Open();
                 using (var comando = new SqlCommand())
                 {
